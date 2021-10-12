@@ -88,6 +88,9 @@ yarn-debug.log*
 yarn-error.log*
 lerna-debug.log*
 
+# Container Db
+/database
+
 # OS
 .DS_Store
 
