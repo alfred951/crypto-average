@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
+import { IsNotEmpty, IsNumber, IsPositive, IsString } from 'class-validator';
 
 export class AddLectureDto {
   @IsString()
@@ -6,6 +6,7 @@ export class AddLectureDto {
   symbol: string;
 
   @IsNumber()
+  @IsPositive()
   @IsNotEmpty()
   lecture: number;
 }

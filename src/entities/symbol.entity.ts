@@ -1,9 +1,8 @@
-import { Type } from 'class-transformer';
-import { IsArray, IsString, ValidateNested } from 'class-validator';
+import { IsString } from 'class-validator';
 import { Entity, Column, ObjectIdColumn, Index } from 'typeorm';
 
 @Entity()
-export class Symbol {
+export class CryptoSymbol {
   @ObjectIdColumn()
   id: number;
 

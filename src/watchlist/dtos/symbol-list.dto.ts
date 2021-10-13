@@ -1,10 +1,9 @@
-import { Symbol } from "src/entities/symbol.entity";
+import { CryptoSymbol } from 'src/entities/symbol.entity';
 
 export class SymbolListDto {
-    result: Symbol[];
+  result: CryptoSymbol[];
 
-    constructor(symbolList: Symbol[]){
-      this.result = [...symbolList];
-    }
+  constructor(symbolList: CryptoSymbol[]) {
+    this.result = [...symbolList];
   }
-  
+}

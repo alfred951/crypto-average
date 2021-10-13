@@ -1,5 +1,9 @@
+import { IsNumber } from 'class-validator';
+
 export class AverageLectureDto {
-    average: number;
-    numberOfLectures: number;
-  }
-  
+  @IsNumber()
+  average: number;
+
+  @IsNumber()
+  numberOfLectures: number;
+}
