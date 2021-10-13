@@ -16,8 +16,6 @@ export class MongoConfigService {
       synchronize: true,
       host: this.config.get<string>('MONGODB_HOST'),
       port: this.config.get<number>('MONGODB_PORT'),
-      username: this.config.get<string>('MONGODB_USERNAME'),
-      password: this.config.get<string>('MONGODB_PASSWORD'),
     };
   }
 }
