@@ -1,9 +1,8 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { MongoConfigService } from './config/mongo.config.service';
+import { WatchlistModule } from './watchlist/watchlist.module';
 
 @Module({
   imports: [
@@ -17,9 +16,9 @@ import { MongoConfigService } from './config/mongo.config.service';
       inject: [MongoConfigService],
       imports: [AppModule],
     }),
+    WatchlistModule,
   ],
-  controllers: [AppController],
-  providers: [AppService, MongoConfigService],
+  providers: [MongoConfigService],
   exports: [MongoConfigService],
 })
 export class AppModule {}
