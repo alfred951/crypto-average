@@ -10,6 +10,9 @@ async function bootstrap() {
       whitelist: true,
     }),
   );
+  app.enableCors({
+    origin: '*',
+  });
   const configService = app.get(ConfigService);
   const port = configService.get('PORT');
   await app.listen(port);

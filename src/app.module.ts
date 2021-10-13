@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
+import { ScheduleModule } from '@nestjs/schedule';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { MongoConfigService } from './config/mongo.config.service';
 import { WatchlistModule } from './watchlist/watchlist.module';
@@ -16,6 +17,7 @@ import { WatchlistModule } from './watchlist/watchlist.module';
       inject: [MongoConfigService],
       imports: [AppModule],
     }),
+    ScheduleModule.forRoot(),
     WatchlistModule,
   ],
   providers: [MongoConfigService],

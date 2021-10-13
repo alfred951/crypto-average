@@ -3,7 +3,9 @@ import {
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
+import { Cron, CronExpression } from '@nestjs/schedule';
 import { InjectRepository } from '@nestjs/typeorm';
+import { BinanceService } from 'src/binance/binance.service';
 import { Repository } from 'typeorm';
 import { CryptoSymbol } from '../entities/symbol.entity';
 import { AverageLectureDto } from './dtos/average-lectures.dto';
@@ -14,7 +16,13 @@ export class WatchlistService {
   constructor(
     @InjectRepository(CryptoSymbol)
     private readonly cryptoSymbolRepository: Repository<CryptoSymbol>,
+    private binanceService: BinanceService,
   ) {}
+
+  @Cron(CronExpression.EVERY_10_SECONDS)
+  getWatchlistLecture() {
+    console.log('Called every 10 seconds');
+  }
 
   public async findAll(): Promise<SymbolListDto> {
     const symbolList = await this.cryptoSymbolRepository.find();
@@ -25,6 +33,11 @@ export class WatchlistService {
   public async addSymbol(symbol: string): Promise<CryptoSymbol> {
     if (await this.getSymbol(symbol)) {
       throw new BadRequestException('Symbol already exists');
+    }
+    try {
+      await this.binanceService.checkSymbol(symbol);
+    } catch (error) {
+      throw new BadRequestException(`Symbol not recogniced by Binance API`);
     }
     const newSymbol = this.cryptoSymbolRepository.create({ symbol: symbol });
     return await this.cryptoSymbolRepository.save(newSymbol);

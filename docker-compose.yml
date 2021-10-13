@@ -12,6 +12,7 @@ services:
     ports:
       - 3000:3000
       - 3001:9229
+      - 9229:9229
     networks:
       - nestjs-network
     depends_on:
