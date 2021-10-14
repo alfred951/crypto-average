@@ -1,8 +1,8 @@
 {
   "name": "crypto-average",
-  "version": "0.0.1",
-  "description": "",
-  "author": "",
+  "version": "1.0.0",
+  "description": "A server for cryptocurrency price observation, powered by BinanceAPI",
+  "author": "Luis Gallego",
   "private": true,
   "license": "UNLICENSED",
   "scripts": {

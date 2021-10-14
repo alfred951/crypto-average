@@ -3,13 +3,31 @@
 
 ## Description
 
-Built using [NestJS](https://typeorm.io/#/) and [Docker](https://docs.docker.com/engine/reference/commandline/compose/) with the following integrations:
+### Built using [NestJS](https://typeorm.io/#/) and [Docker](https://docs.docker.com/engine/reference/commandline/compose/) with the following integrations:
+  
   ORM: [TypeORM](https://typeorm.io/#/)
+  
   Database: [MongoDB](https://www.mongodb.com)
+  
   Documentation: [Compodoc](https://compodoc.app/)
+  
   Linter: [EsLint](https://eslint.org/)
+  
   HTTP Client: [Axios](https://axios-http.com/docs/intro)
+  
   HTTP Mocking (for tests): [Nock](https://www.npmjs.com/package/nock)
+  
+## Installation
+
+```bash
+npm install
+
+# development
+$ docker-compose build dev
+
+# production
+$ docker-compose build prod
+```
 
 ## Documentation
 
@@ -19,16 +37,6 @@ $ npm run docs
 
 # access
 $ localhost:8080
-```
-
-## Installation
-
-```bash
-# development
-$ docker-compose build dev
-
-# production
-$ docker-compose build prod
 ```
 
 ## Running the app

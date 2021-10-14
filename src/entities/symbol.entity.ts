@@ -1,10 +1,11 @@
+import { Exclude } from 'class-transformer';
 import { IsString } from 'class-validator';
-import { Entity, Column, ObjectIdColumn, Index } from 'typeorm';
+import { Entity, Column, ObjectIdColumn, Index, ObjectID } from 'typeorm';
 
 @Entity()
 export class CryptoSymbol {
   @ObjectIdColumn()
-  id: number;
+  id: ObjectID;
 
   @Column()
   @IsString()
@@ -12,5 +13,6 @@ export class CryptoSymbol {
   symbol: string;
 
   @Column({ default: [] })
+  @Exclude()
   lectures: number[] = [];
 }
