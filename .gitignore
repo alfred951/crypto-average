@@ -91,6 +91,9 @@ lerna-debug.log*
 # Container Db
 /database
 
+# Generated docs
+/documentation
+
 # OS
 .DS_Store
 

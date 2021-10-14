@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { ScheduleModule } from '@nestjs/schedule';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { BinanceModule } from './binance/binance.module';
 import { MongoConfigService } from './config/mongo.config.service';
 import { WatchlistModule } from './watchlist/watchlist.module';
 
@@ -19,6 +20,7 @@ import { WatchlistModule } from './watchlist/watchlist.module';
     }),
     ScheduleModule.forRoot(),
     WatchlistModule,
+    BinanceModule,
   ],
   providers: [MongoConfigService],
   exports: [MongoConfigService],

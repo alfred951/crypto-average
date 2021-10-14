@@ -10,11 +10,19 @@ import { WatchlistService } from './watchlist.service';
 export class WatchlistController {
   constructor(private readonly watchlistService: WatchlistService) {}
 
+  /**
+   * @example
+   * (POST) /pairs body{symbol : ETHUSDT}
+   */
   @Post('pairs')
   addSymbol(@Body() addSymbolDto: AddSymbolDto): Promise<CryptoSymbol> {
     return this.watchlistService.addSymbol(addSymbolDto.symbol);
   }
 
+  /**
+   * @example
+   * (POST) /lecture body{symbol : ETHUSDT, lecture : 20.32}
+   */
   @Post('lecture')
   addLecture(@Body() addLectureDto: AddLectureDto): Promise<CryptoSymbol> {
     return this.watchlistService.addLecture(
@@ -23,11 +31,19 @@ export class WatchlistController {
     );
   }
 
+  /**
+   * @example
+   * (GET) /pairs
+   */
   @Get('pairs')
   listPairs(): Promise<SymbolListDto> {
-    return this.watchlistService.findAll();
+    return this.watchlistService.findAllPairs();
   }
 
+  /**
+   * @example
+   * (GET) /average?symbol=ETHUSDT&lectures=10
+   */
   @Get('average')
   averagePrice(
     @Query('symbol') symbol: string,
