@@ -6,6 +6,7 @@ import {
 import { Cron, CronExpression } from '@nestjs/schedule';
 import { InjectRepository } from '@nestjs/typeorm';
 import { BinanceService } from 'src/binance/binance.service';
+import { AveragePriceDto } from 'src/binance/dtos/average-price.dto';
 import { Repository } from 'typeorm';
 import { CryptoSymbol } from '../entities/symbol.entity';
 import { AverageLectureDto } from './dtos/average-lectures.dto';
@@ -19,9 +20,21 @@ export class WatchlistService {
     private binanceService: BinanceService,
   ) {}
 
-  @Cron(CronExpression.EVERY_10_SECONDS)
-  getWatchlistLecture() {
-    console.log('Called every 10 seconds');
+  @Cron(CronExpression.EVERY_HOUR)
+  async getWatchlistLecture() {
+    const whatchlistPairs = await this.cryptoSymbolRepository.find();
+    whatchlistPairs.forEach(async (cryptoSymbol) => {
+      const symbol = cryptoSymbol.symbol;
+      let lecture: AveragePriceDto;
+      try {
+        lecture = await this.binanceService.getAveragePrice(symbol);
+      } catch (error) {
+        throw new NotFoundException(
+          `Binance API encountered an error while fetching ${symbol} error: ${error}`,
+        );
+      }
+      this.addLecture(symbol, lecture.price);
+    });
   }
 
   public async findAll(): Promise<SymbolListDto> {

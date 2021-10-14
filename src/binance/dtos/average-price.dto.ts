@@ -1,6 +1,6 @@
 export class AveragePriceDto {
   mins: number;
-  price: string;
+  price: number;
   code: number;
   msg: string;
 }

@@ -1,6 +1,7 @@
 import { HttpService } from '@nestjs/axios';
 import { Injectable } from '@nestjs/common';
 import { firstValueFrom, map } from 'rxjs';
+import { AveragePriceDto } from './dtos/average-price.dto';
 import { ExchangeInfoDto } from './dtos/exchange-info.dto';
 
 @Injectable()
@@ -19,7 +20,7 @@ export class BinanceService {
     );
   }
 
-  async getAveragePrice(symbol: string): Promise<ExchangeInfoDto> {
+  async getAveragePrice(symbol: string): Promise<AveragePriceDto> {
     return firstValueFrom(
       this.httpService
         .get(`https://api.binance.com/api/v3/avgPrice?symbol=${symbol}`)
