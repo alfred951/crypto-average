@@ -12,7 +12,7 @@ export class WatchlistController {
 
   /**
    * @example
-   * (POST) /pairs body{symbol : ETHUSDT} conflict
+   * (POST) /pairs body{symbol : ETHUSDT} here is the test
    */
   @Post('pairs')
   addSymbol(@Body() addSymbolDto: AddSymbolDto): Promise<CryptoSymbol> {
