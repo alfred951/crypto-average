@@ -12,7 +12,7 @@ export class WatchlistController {
 
   /**
    * @example
-   * (POST) /pairs body{symbol : ETHUSDT} the final countdown
+   * (POST) /pairs body{symbol : ETHUSDT} the final countdown wowwwwwwwwwwwwwwww
    */
   @Post('pairs')
   addSymbol(@Body() addSymbolDto: AddSymbolDto): Promise<CryptoSymbol> {
